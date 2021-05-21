@@ -1,0 +1,20 @@
+version: '3.7'
+services:
+  rhasspy:
+      image: "rhasspy/rhasspy"
+      restart: unless-stopped
+      volumes:
+          - "$PWD/.config/rhasspy/profiles:/profiles"
+          - "/etc/localtime:/etc/localtime:ro"
+      ports:
+          - "12101:12101"
+          - "12183:12183"
+      devices:
+          - "/dev/snd:/dev/snd"
+      command: --user-profiles /profiles --profile de
+
+  demo-skill:
+    build: ./skills/demo
+
+  get-time:
+    build: ./skills/get-time
