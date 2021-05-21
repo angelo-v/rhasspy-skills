@@ -1,11 +1,12 @@
 {
   "name": "rhasspy-skills",
   "version": "1.0.0",
-  "description": "A collection of skills for rhasspy voice assistant, that an be deployed individually",
+  "description": "A collection of skills for rhasspy voice assistant, that can be deployed individually",
   "main": "index.js",
   "scripts": {
     "start": "ts-node skills/demo/src/index.ts",
     "test": "jest",
+    "lint": "eslint",
     "build": "webpack"
   },
   "author": "Angelo Veltens",

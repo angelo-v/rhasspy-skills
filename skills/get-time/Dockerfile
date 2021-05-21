@@ -1,4 +1,4 @@
-FROM node
+FROM node:16
 
 COPY ./dist/skill.js /opt/skill.js
 
