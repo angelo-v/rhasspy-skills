@@ -5,7 +5,20 @@ export interface RhasspySession {
 }
 
 export interface Slots {
-  [name: string]: string | undefined;
+  entity: string;
+  value: {
+    kind: string
+    value: string | number;
+  };
+  slotName: string;
+  rawValue: string;
+  confidence: 1;
+  range: {
+    start: number;
+    end: number;
+    rawStart: number;
+    rawEnd: number;
+  };
 }
 
 export interface AsrToken {

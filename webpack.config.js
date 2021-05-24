@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     demo: {import: "./skills/demo/src/index.ts", filename:  'skills/[name]/dist/skill.js'},
     "get-time": {import: "./skills/get-time/src/index.ts", filename:  'skills/[name]/dist/skill.js'},
+    "shopping-list": {import: "./skills/shopping-list/src/index.ts", filename:  'skills/[name]/dist/skill.js'},
   },
   module: {
     rules: [

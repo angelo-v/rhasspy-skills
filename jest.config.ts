@@ -3,4 +3,5 @@ export default {
   coverageDirectory: "coverage",
   coverageProvider: "v8",
   testEnvironment: "node",
+  setupFilesAfterEnv: ["./jest.setup.ts"],
 };

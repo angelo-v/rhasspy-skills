@@ -20,6 +20,7 @@ export const mqttSkill =
     client.on("message", (topic: string, message: Buffer) => {
       const event: RhasspyEvent = JSON.parse(message.toString());
       if (intentNames.includes(event.intent.intentName)) {
+        console.debug("handling event", event);
         handler.handle(event, { say });
       }
     });

@@ -18,3 +18,12 @@ services:
 
   get-time:
     build: ./skills/get-time
+
+  shopping-list:
+    build: ./skills/shopping-list
+    environment:
+      - TRELLO_API_BASE_URL=https://api.trello.com/1
+      - TRELLO_OAUTH_CONSUMER_KEY=the-consumer-key
+      - TRELLO_OAUTH_TOKEN=the-token
+      - SHOPPING_LIST_TRELLO_BOARD_ID=the-board-id
+      - SHOPPING_LIST_TRELLO_CARD_NAME=Shopping List
