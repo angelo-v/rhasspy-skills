@@ -17,11 +17,16 @@ export const mqttSkill =
       client.subscribe("hermes/intent/#", () => {});
     });
 
-    client.on("message", (topic: string, message: Buffer) => {
+    client.on("message", async (topic: string, message: Buffer) => {
       const event: RhasspyEvent = JSON.parse(message.toString());
       if (intentNames.includes(event.intent.intentName)) {
         console.debug("handling event", event);
-        handler.handle(event, { say });
+        try {
+            await handler.handle(event, { say });
+        } catch (err) {
+            console.error("Handling the event failed", event, err);
+            say(err.message)
+        }
       }
     });
 

@@ -59,12 +59,30 @@ describe("mqtt skill", () => {
       );
       expect(handle).not.toHaveBeenCalled();
     });
+
+    it("says the error message of exceptions thrown in handler", () => {
+      const handle = jest.fn().mockImplementation(() => {
+        throw new Error("This did not work out")
+      });
+      skill(["TestIntent"], {
+        handle,
+      });
+      client.emit(
+          "message",
+          "hermes/intent/#",
+          '{"intent": {"intentName": "TestIntent"}}'
+      );
+      expect(client.publish).toHaveBeenCalledWith(
+          "hermes/tts/say",
+          '{"text":"This did not work out"}'
+      );
+    });
   });
 
   describe("session", () => {
     it("publishes text to say to text-to-speech topic", () => {
       class TestHandler implements Handler {
-        handle(event: RhasspyEvent, session: RhasspySession): void {
+        async handle(event: RhasspyEvent, session: RhasspySession) {
           session.say("text to say");
         }
       }

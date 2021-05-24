@@ -44,5 +44,5 @@ export interface RhasspyEvent {
 }
 
 export type Handler = {
-  handle: (event: RhasspyEvent, session: RhasspySession) => void;
+  handle: (event: RhasspyEvent, session: RhasspySession) => Promise<void>;
 };
