@@ -44,3 +44,6 @@ jobs:
 
       - name: Build and push the get-time Docker image
         run: docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v7 ./skills/get-time --tag ghcr.io/angelo-v/rhasspy-skill-get-time:latest
+
+      - name: Build and push the shopping-list Docker image
+        run: docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v7 ./skills/shopping-list --tag ghcr.io/angelo-v/rhasspy-skill-shopping-list:latest
