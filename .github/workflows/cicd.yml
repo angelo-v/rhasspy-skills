@@ -47,3 +47,6 @@ jobs:
 
       - name: Build and push the shopping-list Docker image
         run: docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v7 ./skills/shopping-list --tag ghcr.io/angelo-v/rhasspy-skill-shopping-list:latest
+
+      - name: Build and push the weather Docker image
+        run: docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v7 ./skills/weather --tag ghcr.io/angelo-v/rhasspy-skill-weather:latest

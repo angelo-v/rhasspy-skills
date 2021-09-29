@@ -27,3 +27,6 @@ services:
       - TRELLO_OAUTH_TOKEN=the-token
       - SHOPPING_LIST_TRELLO_BOARD_ID=the-board-id
       - SHOPPING_LIST_TRELLO_CARD_NAME=Shopping List
+
+  weather:
+    build: ./skills/weather
