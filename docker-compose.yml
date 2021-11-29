@@ -30,3 +30,6 @@ services:
 
   weather:
     build: ./skills/weather
+
+  static-answer:
+    build: ./skills/static-answer

@@ -50,3 +50,6 @@ jobs:
 
       - name: Build and push the weather Docker image
         run: docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v7 ./skills/weather --tag ghcr.io/angelo-v/rhasspy-skill-weather:latest
+
+      - name: Build and push the static-answer Docker image
+        run: docker buildx build --push --platform=linux/amd64,linux/arm64,linux/arm/v7 ./skills/static-answer --tag ghcr.io/angelo-v/rhasspy-skill-static-answer:latest

@@ -8,6 +8,7 @@ module.exports = {
     "get-time": {import: "./skills/get-time/src/index.ts", filename:  'skills/[name]/dist/skill.js'},
     "shopping-list": {import: "./skills/shopping-list/src/index.ts", filename:  'skills/[name]/dist/skill.js'},
     "weather": {import: "./skills/weather/src/index.ts", filename:  'skills/[name]/dist/skill.js'},
+    "static-answer": {import: "./skills/static-answer/src/index.ts", filename:  'skills/[name]/dist/skill.js'},
   },
   module: {
     rules: [
