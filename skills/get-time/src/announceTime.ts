@@ -6,9 +6,12 @@ const sentences = [
     `Genau ${hours} Uhr und ${minutes} Minuten!`,
 ];
 
-export function announceTime(time: Date, variation = Math.random()): string {
-  const hours = time.getHours();
-  const minutes = time.getMinutes();
+export function announceTime(
+  time: DateTime,
+  variation = Math.random()
+): string {
+  const hours = time.hour;
+  const minutes = time.minute;
   return chooseRandom(variation, sentences)(hours, minutes);
 }
 
