@@ -55,4 +55,46 @@ describe("announce world time", () => {
       expect(result).toBe("In Berlin ist es bereits 0 Uhr 30 am nächsten Tag!");
     });
   });
+
+  describe("when asked location is on the previous day still", () => {
+    it("then announcement makes aware of that", () => {
+      (now as jest.Mock).mockReturnValue(
+        new Date(Date.UTC(2022, 0, 26, 0, 30, 40))
+      );
+      const result = announceWorldTime(
+        "New York",
+        nowLocal(),
+        nowIn("America/New_York")
+      );
+      expect(result).toBe(
+        "In New York ist es noch 19 Uhr 30 am vorherigen Tag!"
+      );
+    });
+    it("then announcement makes aware of that, even if the month changed", () => {
+      (now as jest.Mock).mockReturnValue(
+        new Date(Date.UTC(2022, 1, 1, 0, 30, 40))
+      );
+      const result = announceWorldTime(
+        "New York",
+        nowLocal(),
+        nowIn("America/New_York")
+      );
+      expect(result).toBe(
+        "In New York ist es noch 19 Uhr 30 am vorherigen Tag!"
+      );
+    });
+    it("then announcement makes aware of that, even if the year changed", () => {
+      (now as jest.Mock).mockReturnValue(
+        new Date(Date.UTC(2022, 0, 1, 0, 30, 40))
+      );
+      const result = announceWorldTime(
+        "New York",
+        nowLocal(),
+        nowIn("America/New_York")
+      );
+      expect(result).toBe(
+        "In New York ist es noch 19 Uhr 30 am vorherigen Tag!"
+      );
+    });
+  });
 });
