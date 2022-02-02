@@ -1,5 +1,9 @@
-import { announceTime } from "./announceTime";
-
-export function announceWorldTime(local: DateTime, other: DateTime) {
-  return announceTime(other, 0);
+export function announceWorldTime(
+  locationName: string,
+  local: DateTime,
+  other: DateTime
+) {
+  const hours = other.hour;
+  const minutes = other.minute;
+  return `In ${locationName} ist es jetzt ${hours} Uhr ${minutes}!`;
 }

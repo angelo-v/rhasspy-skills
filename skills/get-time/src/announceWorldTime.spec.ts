@@ -11,8 +11,12 @@ describe("announce world time", () => {
       (now as jest.Mock).mockReturnValue(
         new Date(Date.UTC(2022, 0, 26, 19, 30, 40))
       );
-      const result = announceWorldTime(nowLocal(), nowIn("Europe/Berlin"));
-      expect(result).toBe("Es ist 20 Uhr 30!");
+      const result = announceWorldTime(
+        "Berlin",
+        nowLocal(),
+        nowIn("Europe/Berlin")
+      );
+      expect(result).toBe("In Berlin ist es jetzt 20 Uhr 30!");
     });
   });
 });
