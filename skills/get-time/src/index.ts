@@ -1,5 +1,4 @@
-import {skill} from "../../../core/src/mqtt";
-import {GetCurrentTime} from "./handler";
+import { skill } from "../../../core/src/mqtt";
+import { GetCurrentTime } from "./handler";
 
-
-skill(['GetTime'], new GetCurrentTime());
+skill(["GetTime", "GetWorldTime"], new GetCurrentTime());
