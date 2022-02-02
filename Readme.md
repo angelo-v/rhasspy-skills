@@ -4,5 +4,7 @@
 
 ```shell
 npm run build
-docker-compose up
+docker-compose up --build
 ```
+
+Rhasspy will be available at http://localhost:12101
