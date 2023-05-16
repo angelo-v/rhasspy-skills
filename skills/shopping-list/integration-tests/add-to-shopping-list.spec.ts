@@ -50,7 +50,7 @@ describe("add to shopping list intent handler", () => {
       {
         input: "Schreib äpfel auf die Einkaufsliste",
         intent: { intentName: "AddToShoppingList", confidenceScore: 1 },
-        siteId: "default",
+        siteId: "site-id-01",
         id: "97556fcf-f56d-49bb-8d46-97207c1333cf",
         slots: [
           {
@@ -72,7 +72,7 @@ describe("add to shopping list intent handler", () => {
       },
       session
     );
-    expect(session.say).toHaveBeenCalledWith("äpfel hinzugefügt");
+    expect(session.say).toHaveBeenCalledWith("äpfel hinzugefügt", "site-id-01");
     scope.done();
   });
 });

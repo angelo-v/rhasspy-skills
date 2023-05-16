@@ -19,6 +19,6 @@ export class GetCurrentTime implements Handler {
         nowIn(timezoneSlot.value.value.toString())
       );
     }
-    return session.say(text);
+    return session.say(text, event.siteId);
   }
 }

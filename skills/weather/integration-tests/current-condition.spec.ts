@@ -16,7 +16,7 @@ describe("when asked for the current weather conditions in hamburg", () => {
       {
         input: "wie ist das wetter in hamburg",
         intent: { intentName: "GetCurrentWeather", confidenceScore: 1 },
-        siteId: "default",
+        siteId: "site-id-01",
         id: "97556fcf-f56d-49bb-8d46-97207c1333cf",
         slots: [
           {
@@ -39,7 +39,8 @@ describe("when asked for the current weather conditions in hamburg", () => {
       session
     );
     expect(session.say).toHaveBeenCalledWith(
-      "In Hamburg sind es aktuell 18 Grad. Es ist Nebel."
+      "In Hamburg sind es aktuell 18 Grad. Es ist Nebel.",
+      "site-id-01"
     );
     scope.done();
   });

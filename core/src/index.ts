@@ -1,13 +1,13 @@
 export type Skill = (intentNames: string[], handler: Handler) => void;
 
 export interface RhasspySession {
-  say: (text: string) => void;
+  say: (text: string, siteId: string) => void;
 }
 
 export interface Slots {
   entity: string;
   value: {
-    kind: string
+    kind: string;
     value: string | number;
   };
   slotName: string;

@@ -1,6 +1,6 @@
-import {MqttClient} from "mqtt";
-import {Handler, RhasspyEvent, RhasspySession, Skill} from "../index";
-import {mqttSkill} from "./skill";
+import { MqttClient } from "mqtt";
+import { Handler, RhasspyEvent, RhasspySession, Skill } from "../index";
+import { mqttSkill } from "./skill";
 
 const EventEmitter = require("events");
 
@@ -62,19 +62,19 @@ describe("mqtt skill", () => {
 
     it("says the error message of exceptions thrown in handler", () => {
       const handle = jest.fn().mockImplementation(() => {
-        throw new Error("This did not work out")
+        throw new Error("This did not work out");
       });
       skill(["TestIntent"], {
         handle,
       });
       client.emit(
-          "message",
-          "hermes/intent/#",
-          '{"intent": {"intentName": "TestIntent"}}'
+        "message",
+        "hermes/intent/#",
+        '{"intent": {"intentName": "TestIntent"}, "siteId": "site-id-01"}'
       );
       expect(client.publish).toHaveBeenCalledWith(
-          "hermes/tts/say",
-          '{"text":"This did not work out"}'
+        "hermes/tts/say",
+        '{"siteId":"site-id-01","text":"This did not work out"}'
       );
     });
   });
@@ -83,7 +83,7 @@ describe("mqtt skill", () => {
     it("publishes text to say to text-to-speech topic", () => {
       class TestHandler implements Handler {
         async handle(event: RhasspyEvent, session: RhasspySession) {
-          session.say("text to say");
+          session.say("text to say", "site-id-01");
         }
       }
       skill(["TestIntent"], new TestHandler());
@@ -94,7 +94,7 @@ describe("mqtt skill", () => {
       );
       expect(client.publish).toHaveBeenCalledWith(
         "hermes/tts/say",
-        '{"text":"text to say"}'
+        '{"siteId":"site-id-01","text":"text to say"}'
       );
     });
   });

@@ -24,6 +24,7 @@ describe("add to shopping list handler", () => {
       );
       await new AddToShoppingList(shoppingListService, "Einkaufen").handle(
         {
+          siteId: "site-id-01",
           slots: [
             {
               value: { value: "obst" },
@@ -35,7 +36,10 @@ describe("add to shopping list handler", () => {
       );
     });
     it("tells, what has been added", () => {
-      expect(session.say).toHaveBeenCalledWith("obst hinzugefügt");
+      expect(session.say).toHaveBeenCalledWith(
+        "obst hinzugefügt",
+        "site-id-01"
+      );
     });
     it("added item to shopping list", () => {
       expect(shoppingList.addItem).toHaveBeenCalledWith("obst");
@@ -50,7 +54,8 @@ describe("add to shopping list handler", () => {
   describe("fails", () => {
     it("when no item slot is given", async () => {
       const event = {
-        slots:  [],
+        siteId: "site-id-01",
+        slots: [],
       } as unknown as RhasspyEvent;
       const session = {
         say: jest.fn(),
@@ -58,12 +63,10 @@ describe("add to shopping list handler", () => {
       await new AddToShoppingList(
         {} as ShoppingListService,
         "Einkaufen"
-      ).handle(
-        event,
-        session
-      );
+      ).handle(event, session);
       expect(session.say).toHaveBeenCalledWith(
-        "Ich habe nicht verstanden, was hinzugefügt werden soll."
+        "Ich habe nicht verstanden, was hinzugefügt werden soll.",
+        "site-id-01"
       );
     });
   });

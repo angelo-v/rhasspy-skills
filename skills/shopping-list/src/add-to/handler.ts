@@ -11,10 +11,11 @@ export class AddToShoppingList implements Handler {
   }
 
   async handle(event: RhasspyEvent, session: RhasspySession) {
-    const slot = event.slots.find(it => it.slotName === 'item1');
+    const slot = event.slots.find((it) => it.slotName === "item1");
     if (!slot) {
       return session.say(
-        "Ich habe nicht verstanden, was hinzugefügt werden soll."
+        "Ich habe nicht verstanden, was hinzugefügt werden soll.",
+        event.siteId
       );
     }
     const shoppingList = await this.shoppingListService.findShoppingList(
@@ -22,6 +23,6 @@ export class AddToShoppingList implements Handler {
     );
     const item = slot.value.value;
     await shoppingList.addItem(item.toString());
-    return session.say(`${item} hinzugefügt`);
+    return session.say(`${item} hinzugefügt`, event.siteId);
   }
 }

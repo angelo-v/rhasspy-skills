@@ -27,7 +27,8 @@ describe("Get current time", () => {
       session
     );
     expect(session.say).toHaveBeenCalledWith(
-      expect.stringMatching(/.*15.*37.*/)
+      expect.stringMatching(/.*15.*37.*/),
+      "default"
     );
   });
 
@@ -63,7 +64,8 @@ describe("Get current time", () => {
       session
     );
     expect(session.say).toHaveBeenCalledWith(
-      expect.stringMatching(/.*New York.*10.*37.*/)
+      expect.stringMatching(/.*New York.*10.*37.*/),
+      "default"
     );
   });
 });

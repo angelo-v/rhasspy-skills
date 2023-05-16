@@ -9,7 +9,7 @@ describe("demo handler", () => {
       {
         input: "hallo echo",
         intent: { intentName: "Demo", confidenceScore: 1 },
-        siteId: "default",
+        siteId: "site-id-01",
         id: "10225110-63c6-499b-8423-e14096c4efcf",
         slots: [],
         sessionId: "10225110-63c6-499b-8423-e14096c4efcf",
@@ -23,7 +23,8 @@ describe("demo handler", () => {
       session
     );
     expect(session.say).toHaveBeenCalledWith(
-      expect.stringMatching("hallo echo")
+      expect.stringMatching("hallo echo"),
+      "site-id-01"
     );
   });
 });

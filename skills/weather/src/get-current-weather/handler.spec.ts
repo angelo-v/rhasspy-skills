@@ -22,6 +22,7 @@ describe("get current weather", () => {
     };
     await new GetCurrentWeather(weatherService).handle(
       {
+        siteId: "site-id-01",
         slots: [
           {
             value: { value: "Hamburg" },
@@ -33,13 +34,15 @@ describe("get current weather", () => {
     );
     expect(weatherService.getCurrentConditions).toHaveBeenCalledWith("Hamburg");
     expect(session.say).toHaveBeenCalledWith(
-      "In Hamburg sind es aktuell 18 Grad. Es ist Nebel."
+      "In Hamburg sind es aktuell 18 Grad. Es ist Nebel.",
+      "site-id-01"
     );
   });
 
   describe("fails", () => {
     it("when no locality slot is given", async () => {
       const event = {
+        siteId: "site-id-01",
         slots: [],
       } as unknown as RhasspyEvent;
       const session = {
@@ -47,7 +50,8 @@ describe("get current weather", () => {
       };
       await new GetCurrentWeather({} as WeatherService).handle(event, session);
       expect(session.say).toHaveBeenCalledWith(
-        "Ich habe nicht verstanden, um welchen Ort es geht."
+        "Ich habe nicht verstanden, um welchen Ort es geht.",
+        "site-id-01"
       );
     });
   });
